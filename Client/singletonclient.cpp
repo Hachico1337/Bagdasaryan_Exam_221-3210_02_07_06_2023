@@ -28,29 +28,9 @@ SingletonClient* SingletonClient::getInstance(){
 
 void SingletonClient::send_msg_to_server(QString query){
     ResultMessage.clear();
-    if(flag)
-        mTcpSocket->write(query.toUtf8());
-    else
-    {
-        if(query.left(4) == "auth")
-            {
-               ResultMessage = "auth+user";
-
-            }
-            else if(query.left(3) == "reg")
-            {
-               ResultMessage = "reg+";
-            }
-            else if(query.left(5)== "check")
-            {
-               ResultMessage = "WELL DONE";
-            }
-
-            else if(query.left(4)== "give")
-            {
-               ResultMessage = "gen_var(1)";
-            }
-    }
+   
+    mTcpSocket->write(query.toUtf8());
+    
 }
 
 void SingletonClient::slotServerRead(){
